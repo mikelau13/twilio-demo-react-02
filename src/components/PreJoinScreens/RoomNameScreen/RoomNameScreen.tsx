@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import {
   Typography,
   makeStyles,
@@ -56,6 +56,7 @@ export default function RoomNameScreen({
   setUserType,
   handleSubmit,
 }: RoomNameScreenProps) {
+  const [pin, setPin] = useState('');
   const classes = useStyles();
   const { user } = useAppState();
 
@@ -69,6 +70,10 @@ export default function RoomNameScreen({
 
   const handleUserTypeChange = (event: any) => {
     setUserType(event.target.value);
+  };
+
+  const handlePinChange = (event: any) => {
+    setPin(event.target.value);
   };
 
   const hasUsername = !window.location.search.includes('customIdentity=true') && user?.displayName;
@@ -115,6 +120,20 @@ export default function RoomNameScreen({
             />
           </div>
           <div className={classes.textFieldContainer}>
+            <InputLabel shrink htmlFor="input-pin">
+              PIN (chrc)
+            </InputLabel>
+            <TextField
+              autoCapitalize="false"
+              id="input-pin"
+              variant="outlined"
+              fullWidth
+              size="small"
+              value={pin}
+              onChange={handlePinChange}
+            />
+          </div>
+          <div className={classes.textFieldContainer}>
             <InputLabel shrink htmlFor="input-room-name">
               User Type
             </InputLabel>
@@ -136,7 +155,7 @@ export default function RoomNameScreen({
             variant="contained"
             type="submit"
             color="primary"
-            disabled={!name || !roomName}
+            disabled={!name || !roomName || !userType || pin != 'chrc'}
             className={classes.continueButton}
           >
             Continue

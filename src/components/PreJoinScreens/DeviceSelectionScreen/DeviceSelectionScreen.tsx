@@ -70,7 +70,7 @@ export default function DeviceSelectionScreen({ name, roomName, userType, setSte
   return (
     <>
       <Typography variant="h5" className={classes.gutterBottom}>
-        Join {roomName} as {userType}
+        Join [{roomName}] as [{userType}]
       </Typography>
 
       <Grid container justify="center">

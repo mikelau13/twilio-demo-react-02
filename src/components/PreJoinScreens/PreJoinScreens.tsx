@@ -67,6 +67,7 @@ export default function PreJoinScreens() {
         <RoomNameScreen
           name={name}
           roomName={roomName}
+          userType={userType}
           setName={setName}
           setRoomName={setRoomName}
           setUserType={setUserType}
