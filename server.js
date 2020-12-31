@@ -21,7 +21,7 @@ app.get('/token', (req, res) => {
   const videoGrant = new VideoGrant({ room: roomName });
   token.addGrant(videoGrant);
   res.send(token.toJwt());
-  console.log(`issued token for ${identity} in room ${roomName}`);
+  console.log(`${twilioAccountSid} issued token for ${identity} in room ${roomName}`);
 });
 
 app.get('*', (_, res) => res.sendFile(path.join(__dirname, 'build/index.html')));

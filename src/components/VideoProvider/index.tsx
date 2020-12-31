@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode } from 'react';
+import React, { createContext, useState, ReactNode } from 'react';
 import {
   CreateLocalTrackOptions,
   ConnectOptions,
@@ -38,6 +38,8 @@ export interface IVideoContext {
   removeLocalVideoTrack: () => void;
   isSharingScreen: boolean;
   toggleScreenShare: () => void;
+  isAllowShareScreen: boolean;
+  setAllowShareScreen: (isAllowShareScreen: boolean) => void;
   getAudioAndVideoTracks: () => Promise<void>;
 }
 
@@ -71,6 +73,7 @@ export function VideoProvider({ options, children, onError = () => {}, onDisconn
   useHandleTrackPublicationFailed(room, onError);
   useHandleOnDisconnect(room, onDisconnect);
   const [isSharingScreen, toggleScreenShare] = useScreenShareToggle(room, onError);
+  const [isAllowShareScreen, setAllowShareScreen] = useState<boolean>(true); // MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 participantDisconnected listeners added. Use emitter.setMaxListeners() to increase limit
 
   return (
     <VideoContext.Provider
@@ -87,6 +90,8 @@ export function VideoProvider({ options, children, onError = () => {}, onDisconn
         removeLocalVideoTrack,
         isSharingScreen,
         toggleScreenShare,
+        isAllowShareScreen,
+        setAllowShareScreen,
         getAudioAndVideoTracks,
       }}
     >

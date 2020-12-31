@@ -45,9 +45,6 @@ ReactDOM.render(
           <Route path="/login">
             <LoginPage />
           </Route>
-          <Route path="/create">
-            <>Hello</>
-          </Route>
           <Redirect to="/" />
         </Switch>
       </AppStateProvider>

@@ -155,7 +155,7 @@ export default function RoomNameScreen({
             variant="contained"
             type="submit"
             color="primary"
-            disabled={!name || !roomName || !userType || pin != 'chrc'}
+            disabled={!name || !roomName || !userType || pin !== 'chrc'}
             className={classes.continueButton}
           >
             Continue

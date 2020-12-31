@@ -60,6 +60,8 @@ export type IVideoTrack = LocalVideoTrack | RemoteVideoTrack;
 
 export type RoomType = 'group' | 'group-small' | 'peer-to-peer' | 'go';
 
+export type ParticipantType = 'doctor' | 'patient';
+
 export interface PreflightTestReport {
   isTurnRequired: boolean;
   stats: {

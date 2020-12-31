@@ -61,11 +61,14 @@ export default function DeviceSelectionScreen({ name, roomName, userType, setSte
   const classes = useStyles();
   const { getToken, isFetching } = useAppState();
   const { connect, isAcquiringLocalTracks, isConnecting } = useVideoContext();
+  const { setAllowShareScreen } = useVideoContext();
   const disableButtons = isFetching || isAcquiringLocalTracks || isConnecting;
 
   const handleJoin = () => {
     getToken(name, roomName).then(token => connect(token));
   };
+
+  setAllowShareScreen(userType === 'doctor');
 
   return (
     <>
@@ -83,7 +86,7 @@ export default function DeviceSelectionScreen({ name, roomName, userType, setSte
               <ToggleAudioButton className={classes.mobileButton} disabled={disableButtons} />
               <ToggleVideoButton className={classes.mobileButton} disabled={disableButtons} />
             </Hidden>
-            <SettingsMenu mobileButtonClass={classes.mobileButton} />
+            {userType === 'doctor' && <SettingsMenu mobileButtonClass={classes.mobileButton} />}
           </div>
         </Grid>
         <Grid item md={5} sm={12} xs={12}>
