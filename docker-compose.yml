@@ -1,0 +1,24 @@
+# ./docker-compose.yml
+
+version: '3.8'
+
+services:
+  twilio-demo-react:
+    build:
+      context: .
+    #  dockerfile: Dockerfile.dev
+    container_name: twilio-demo-react
+    command: npm start
+    volumes:
+      - .:/usr/react
+    ports:
+      - 3000:3000
+    networks:
+      - twilio-demo-network
+    stdin_open: true 
+    tty: true
+
+networks:
+  twilio-demo-network:
+    name: twilio-demo-network
+    driver: bridge
